@@ -34,6 +34,8 @@ for movie in movie_data:
     
     db_movie = crud.create_movie(title, overview, release_date, poster_path)
     movies_in_db.append(db_movie)
+model.db.session.add_all(movies_in_db)
+model.db.session.commit()    
 
 for n in range(10):
     email = f"user{n}@test.com"
@@ -51,7 +53,3 @@ for n in range(10):
         
     model.db.session.commit()
     
-print('-----Adding movies to DB-----')
-model.db.session.add_all(movies_in_db)
-print('-----Saving changes to the DB-----')
-model.db.session.commit()
